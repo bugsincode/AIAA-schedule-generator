@@ -75,7 +75,7 @@ def genDoc():
     
     # Set geometry
     doc.preamble.append(NoEscape('\geometry{letterpaper,'
-        'left=0.3cm,right=0.3cm,headheight=0.5cm,top=0.2cm,bottom=0.2cm,'
+        'left=0.3cm,right=0.3cm,headheight=0cm,top=0.2cm,bottom=0.2cm,'
         'foot=0cm,footskip=0cm,includeheadfoot=True}'))
      
     # Add image path
@@ -188,7 +188,8 @@ def pageDL(url,filename,wtxt=False):
         file_exists = os.path.exists(fullfile)
         if (file_exists):
             re_dl = False
-            data = pickle.load(open(fullfile,'rb'))
+            with open(fullfile, 'rb') as f:
+                data = pickle.load(f)
             
             #file = open(fullfile, 'r')
             #data = file.read().replace('\n', '')
@@ -199,26 +200,23 @@ def pageDL(url,filename,wtxt=False):
         response = AIAA_vs.session.get(url)
         data = response.text
         
+        if (wtxt):
+            # For debug
+            file = open( AIAA_vs.DL_folder + filename + '.html', 'w')
+            file.write(str(data))
+            # Can also parse the html out
+            #file.write(html2text.html2text(str(data)))
+            file.close()
+        
         # Split string by lines
-        datb = data.split('\r\n')
+        data = data.split('\r\n')
         # Remove empty strings
-        datb = list(filter(None,datb))
+        data = list(filter(None,data))
         
         # Write webpage data to file
-        pickle.dump(datb,open(fullfile,'wb'))
-        #file = open(fullfile, 'w')
-        #for line in data:
-        #    file.write(line)
-        #file.close()
-        
-    if (wtxt):
-        # For debug
-        file = open( AIAA_vs.DL_folder + filename + '.html', 'w')
-        file.write(str(data))
-        # Can also parse the html out
-        #file.write(html2text.html2text(str(data)))
-        file.close()
-        
+        with open(fullfile, 'wb') as f:
+            pickle.dump(data, f)
+
     return data
 
 
@@ -370,7 +368,7 @@ def paperLoader(lines,idx,idx_lim,TPnum,ts):
     if ((ibeg > -1) and (iend > -1)):
         # Assume all info for TP was found
         TP_lines = pageDL(tp.url,'DL_TP_'+tp.data_primary_key[10:])
-
+        
         tag6 = '<a href="https://doi.org/'
         
         TP_idx = 0
