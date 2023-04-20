@@ -17,17 +17,18 @@ import qrcode
 #     AIAA_technical_paper          (TP )
 
 # Remove QR codes for a concise schedule
-AIAA_vs.noqrcodes = False
+AIAA_vs.noqrcodes = True
 # AIAA
 AIAA_vs.colorscheme = ['FFFFFF','78af03','1a3d6d','151b47','f7f27d','8a2932']
 # Grayscale (for printing)
-#AIAA_vs.colorscheme = ['FFFFFF','565656','FFFFFF','000000','FFFFFF','000000']
+AIAA_vs.colorscheme = ['FFFFFF','565656','FFFFFF','000000','FFFFFF','000000']
 
 # The code will check locally if the necessary HTML files are present to 
 # avoid downloading them again to generate the schedule. This can be disabled
 # to force re-downloading the files using the option 'DL_force'
 AIAA_vs.DL_force  = False
-AIAA_vs.url_base = 'https://virtualscitech.aiaa.org'
+#AIAA_vs.url_base = 'https://virtualscitech.aiaa.org'
+AIAA_vs.url_base = 'https://virtualaviation.aiaa.org/'
 AIAA_vs.DL_folder = './AIAA_data/'
 # Create the directory (webpage data) and subdirectory (QR code images)
 os.makedirs(os.path.dirname(AIAA_vs.DL_folder+'Images/'), exist_ok=True)

@@ -287,6 +287,16 @@ def paperLoader(lines,idx,idx_lim,TPnum,ts):
                 
             # These TP cause issues with their partially missing info
             # (Here we must use the names that are escaped !)
+            # For Scitech 2023
+            #badTP = ['Boundary Layer Turbulence Flight Experiment in Memory of Dr. Michael Holden: Project Definition (Invited Talk)',
+            #         'Overview of NASA EDL Technology Strategy and EDL Session Organization',
+            #         'Panel Discussion',
+            #         'Overview Talk-Dr. Alok Majumdar',
+            #         'Invited talk with Dan Hauser',
+            #         'Invited Talk: Adam Smith et al.{,} Low Leakage Valves for long duration missions',
+            #         'Presenter Q\\&A',
+            #         'Invited Talk: Koki Ho'
+            #         ]
             badTP = ['Boundary Layer Turbulence Flight Experiment in Memory of Dr. Michael Holden: Project Definition (Invited Talk)',
                      'Overview of NASA EDL Technology Strategy and EDL Session Organization',
                      'Panel Discussion',
