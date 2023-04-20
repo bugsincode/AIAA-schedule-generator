@@ -1,5 +1,5 @@
 # AIAA-schedule-generator
-Generates an offline pdf of the AIAA schedule for the technical sessions of the conferences (was made to work for AIAA Scitech 2023).
+Generates an offline pdf of the AIAA schedule for the technical sessions of the conferences (was made to work for AIAA Scitech 2023 but handles Aviation 2023 also).
 The first time running the code will be slow as it will download each webpage's html code to obtain information.
 This data will be saved locally such that if the code stops halfway through, it will not have to redownload the previous data to generate the schedule.
 It also helps debugging the code as it otherwise runs relatively quickly once the data is locally available.
